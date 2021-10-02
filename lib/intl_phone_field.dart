@@ -167,6 +167,8 @@ class IntlPhoneField extends StatefulWidget {
 
   TextInputAction? textInputAction;
 
+  EdgeInsets padding;
+
   IntlPhoneField(
       {this.initialCountryCode,
       this.obscureText = false,
@@ -200,7 +202,9 @@ class IntlPhoneField extends StatefulWidget {
       this.textInputAction,
       this.autovalidateMode,
       this.showCountryFlag = true,
-      this.cursorColor});
+      this.cursorColor,
+      this.padding = EdgeInsets.zero,
+      });
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -313,7 +317,10 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Padding(
+      padding: widget.padding,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         _buildFlagsButton(),
         SizedBox(width: 8),
@@ -369,6 +376,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           ),
         ),
       ],
+      ),
     );
   }
 
